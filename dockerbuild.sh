@@ -51,11 +51,7 @@ if [[ $rc != 0 ]] ; then
 fi
 
 echo Building docker image
-<<<<<<< HEAD
-docker build -t halldis13/tictactoe .
-=======
-
-docker build -t gulli/tictactoe:$GIT_COMMIT .
+docker build -t halldis13/tictactoe:$GIT_COMMIT .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -63,12 +59,11 @@ if [[ $rc != 0 ]] ; then
     exit $rc
 fi
 
-docker push gulli/tictactoe:$GIT_COMMIT
+docker push halldis13/tictactoe:$GIT_COMMIT
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker push failed " $rc
     exit $rc
 fi
->>>>>>> upstream/master
 
 echo "Done"
