@@ -54,7 +54,7 @@ describe('when make move command', function(){
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
-    })
+    });
   });
 
   describe("one previous move", function(){
@@ -101,7 +101,7 @@ describe('when make move command', function(){
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
 
-    })
+    });
   });
   describe("on win", function(){
     it('having three in a row should result in a win event', function(){
@@ -140,7 +140,7 @@ describe('when make move command', function(){
         y:2,
         timeStamp: "2015.12.18.T11.30.54"
       };
-      then[{
+      then=[{
         id:"2",
         event:"Winner",
         user:{
@@ -148,14 +148,14 @@ describe('when make move command', function(){
           side:'X'
         },
         name:"CreatedGame",
-        timeStamp: "2015.12.18.T11.30.55"
+        timeStamp: "2015.12.18.T11.30.54"
       }];
 
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
 
-    })
+    });
 
 });
 });
