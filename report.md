@@ -5,6 +5,9 @@ Npm:
 Nodejs:
 Bower:
 Docker:
+Jenkins:
+Karma:
+Mocha:
+q:
 -----
-2: Topology of the deployment path:
-
+day 2: Topology of the deployment path:
