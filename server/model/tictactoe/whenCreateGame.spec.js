@@ -7,7 +7,6 @@ describe('create game command', function(){
     given= [];
     when={
       id:"1",
-      gameId:"1",
       comm:"CreateGame",
       user : {
         userName:'Halldis',
@@ -18,7 +17,6 @@ describe('create game command', function(){
     };
     then=[{
       id:"1",
-      gameId:"2",
       event:"GameCreated",
       user : {
         userName:'Halldis',
@@ -49,7 +47,7 @@ describe('create game command', function(){
     then=[{
       id:"2",
       gameId:"2",
-      event:"CreatedGame",
+      event:"GameCreated",
       user : {
         userName:'Eva',
         side: 'X'
