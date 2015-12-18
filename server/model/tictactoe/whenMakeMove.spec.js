@@ -391,4 +391,4 @@ describe("on draw", function(){
     });
   });
 
-})
+});
