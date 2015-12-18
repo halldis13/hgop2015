@@ -32,7 +32,7 @@ describe('when make move command', function(){
         comm:"MakeMove",
         user:{
           userName : "Eva",
-          side:'X'
+          side:'O'
         },
         x:0,
         y:1,
@@ -43,7 +43,7 @@ describe('when make move command', function(){
         event:"MoveMade",
         user:{
           userName:"Eva",
-          side:'X'
+          side:'O'
         },
         name:"CreatedGame",
         x:0,
@@ -64,7 +64,7 @@ describe('when make move command', function(){
         event:"MoveMade",
         user:{
           userName:"Eva",
-          side:'X'
+          side:'O'
         },
         name:"CreatedGame",
         x:0,
@@ -77,7 +77,7 @@ describe('when make move command', function(){
         comm:"MakeMove",
         user:{
           userName:"Eva",
-          side:'X'
+          side:'O'
         },
         x:0,
         y:1,
@@ -89,7 +89,7 @@ describe('when make move command', function(){
         event:"IllegalMove",
         user:{
           userName:"Eva",
-          side:'X'
+          side:'O'
         },
         name:"CreatedGame",
         x:0,
@@ -101,6 +101,61 @@ describe('when make move command', function(){
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
 
-    });
+    })
   });
+  describe("on win", function(){
+    it('having three in a row should result in a win event', function(){
+      given.push({
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:0,
+         y:2,
+         timeStamp: "2015.12.18T11:30:50"
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:1,
+         y:2,
+         timeStamp: "2015.12.18.T11:30:52"  
+      });
+      when={
+        id:"2",
+        comm:"MakeMove",
+        user:{
+          userName:"Halldis",
+          side:'X'
+        },
+        x:2,
+        y:2,
+        timeStamp: "2015.12.18.T11.30.54"
+      };
+      then[{
+        id:"2",
+        event:"Winner",
+        user:{
+          userName:"Halldis",
+          side:'X'
+        },
+        name:"CreatedGame",
+        timeStamp: "2015.12.18.T11.30.55"
+      }];
+
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+      JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+
+    })
+
+});
 });

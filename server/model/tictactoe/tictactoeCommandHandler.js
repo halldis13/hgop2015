@@ -49,6 +49,7 @@ module.exports = function tictactoeCommandHandler(events) {
       }
     },
     "MakeMove": function(cmd){
+      //illegal move
       if(gameState.board[cmd.x][cmd.y]!==''){
         return [{
           id: cmd.id,
@@ -61,6 +62,24 @@ module.exports = function tictactoeCommandHandler(events) {
           timeStamp: cmd.timeStamp
         }]
       }
+      //win
+        //column
+         if((gameState.board[0][cmd.y]===cmd.side && gameState.board[1][cmd.y]===cmd.side) ||
+           (gameState.board[1][cmd.y]===cmd.side && gameState.board[2][cmd.y]===cmd.side) || 
+           (gameState.board[2][cmd.y]===cmd.side && gameState.board[0][cmd.y]===cmd.side)){
+           return [{
+	     id:cmd.id,
+             event: "Winner",
+	     user: cmd.user,
+             name:gameState.gameCreatedEvent.name,
+	     timeStamp: cmd.timeStamp
+          }]
+        }  
+        //row
+        //diagonal
+      //check if full
+      //draw
+      //move made
       return [{
         id: cmd.id,
         event: "MoveMade",
