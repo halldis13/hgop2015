@@ -76,7 +76,32 @@ module.exports = function tictactoeCommandHandler(events) {
           }]
         }  
         //row
+        if((gameState.board[cmd.x][0]===cmd.side && gameState.board[cmd.x][1]===cmd.side) ||
+           (gameState.board[cmd.x][1]===cmd.side && gameState.board[cmd.x][2]===cmd.side) || 
+           (gameState.board[cmd.x][2]===cmd.side && gameState.board[cmd.x][0]===cmd.side)){
+           return [{
+	     id:cmd.id,
+             event: "Winner",
+	     user: cmd.user,
+             name:gameState.gameCreatedEvent.name,
+	     timeStamp: cmd.timeStamp
+          }]
+        } 
         //diagonal
+        if((gameState.board[0][2]===cmd.side && gameState.board[2][0]===cmd.side) ||
+           (gameState.board[1][1]===cmd.side && gameState.board[0][2]===cmd.side) || 
+           (gameState.board[1][1]===cmd.side && gameState.board[2][0]===cmd.side) ||
+           (gameState.board[0][0]===cmd.side && gameState.board[1][1]===cmd.side) ||
+           (gameState.board[0][0]===cmd.side && gameState.board[2][2]===cmd.side) || 
+           (gameState.board[1][1]===cmd.side && gameState.board[2][2]===cmd.side)){
+           return [{
+	     id:cmd.id,
+             event: "Winner",
+	     user: cmd.user,
+             name:gameState.gameCreatedEvent.name,
+	     timeStamp: cmd.timeStamp
+          }]
+        } 
       //check if full
       //draw
       //move made
