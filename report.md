@@ -1,24 +1,52 @@
-Vagrant: Hjálpar til við að búa til og setja upp sýndarvélar
+#HGOP2015
 
-Virtual Box: Sýndarvél sem hægt er að setja upp á margskonar tegundir af tölvun.
+###Vagrant: 
+Hjálpar til við að búa til og setja upp sýndarvélar
 
-Grunt: er tól fyrir javascript forrit sem m.a. sameinar forrit, villugreinir þau, keyrir test eða minifyerar þau.
+###Virtual Box: 
+Sýndarvél sem hægt er að setja upp á margskonar tegundir af tölvun.
 
-Npm: Er package manager fyrir javascript keyrsluumhverfið Node.js
+###Grunt: 
+er tól fyrir javascript forrit sem m.a. sameinar forrit, villugreinir þau, keyrir test eða minifyerar þau.
 
-Nodejs: Er keyrsluumhverfi fyrir þróun á server-side vefforrit
+###Npm: 
+Er package manager fyrir javascript keyrsluumhverfið Node.js
 
-Bower: er package manager fyrir Javascript, hægt að skilgreina, útgáfustýra og sækja nauðsynlegar viðbætur 
+###Nodejs: 
+Er keyrsluumhverfi fyrir þróun á server-side vefforrit
 
-Docker: Hjálpar til við að pakka forritinu þínu og öllum viðbótum í Image til að auðvelda hugbúnaðarþróun.
+###Bower: 
+er package manager fyrir Javascript, hægt að skilgreina, útgáfustýra og sækja nauðsynlegar viðbætur 
 
-Jenkins: Er Continuous Integration & Delivery tól. Þar er hægt að Builda og Testa.
+###Docker: 
+Hjálpar til við að pakka forritinu þínu og öllum viðbótum í Image til að auðvelda hugbúnaðarþróun.
 
-Karma:
+###Jenkins:
+Er Continuous Integration & Delivery tól. Þar er hægt að Builda og Testa.
 
-Mocha: Er test framework fyrir javascript
+###Karma:
 
-q: verður að vera installað til að hægt sé að nota memory store
+###Mocha: 
+Er test framework fyrir javascript
+
+###q: 
+verður að vera installað til að hægt sé að nota memory store
 
 -----
-day 2: Topology of the deployment path: docker Imageinu er pushað frá dev-vélinni og þaðan er ssh-að inn á test-vélina og pullað Image-inu. Þá er kill-að containerinn og eytt honum og hann keyrður aftur upp.
+###day 2: 
+####Topology of the deployment path: 
+docker Imageinu er pushað frá dev-vélinni og þaðan er ssh-að inn á test-vélina og pullað Image-inu. Þá er kill-að containerinn og eytt honum og hann keyrður aftur upp.
+
+#Jenkins Skriftur
+##Commit Stage:
+Build: .dockerbuild.sh
+##Acceptance Stage:
+AcceptanceTest: ./acceptancetest.sh
+##DeployStage:
+Deploy To Dev: ./deploytodev.sh  
+Deploy To Test: ./deploytotest.sh  
+
+
+Open Firefox: 
+export DISPLAY=:0  
+firefox
