@@ -57,7 +57,7 @@ describe('when make move command', function(){
     });
   });
 
-  describe("one previous move", function(){
+  describe("on previous move", function(){
     it('placing move in same place should be illegal',function(){
       given.push({
         id:"2",
@@ -262,5 +262,133 @@ it('having three in a diagonal should result in a win event', function(){
 
     });
 });
+
+describe("on draw", function(){
+    it('when board is full an there is no winner should result in a draw event',function(){
+      given.push({
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:0,
+         y:0,
+         timeStamp: "2015.12.18T11:30:50"
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:1,
+         y:0,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Eva",
+           side:'O'
+         },
+         name:"CreatedGame",
+         x:2,
+         y:0,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Eva",
+           side:'O'
+         },
+         name:"CreatedGame",
+         x:0,
+         y:1,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:2,
+         y:1,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Halldis",
+           side:'X'
+         },
+         name:"CreatedGame",
+         x:0,
+         y:2,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Eva",
+           side:'O'
+         },
+         name:"CreatedGame",
+         x:1,
+         y:2,
+         timeStamp: "2015.12.18.T11:30:52"  
+      },
+      { 
+         id:"2",
+         event:"MoveMade",
+         user:{
+           userName:"Eva",
+           side:'O'
+         },
+         name:"CreatedGame",
+         x:1,
+         y:1,
+         timeStamp: "2015.12.18.T11:30:52"  
+      });
+      when={
+        id:"2",
+        comm:"MakeMove",
+        user:{
+          userName:"Eva",
+          side:'O'
+        },
+        x:2,
+        y:2,
+        timeStamp: "2015.12.18T11:30:50"
+      };
+
+      then=[{
+        id:"2",
+        event:"Draw",
+        user:{
+          userName:"Eva",
+          side:'O'
+        },
+        name:"CreatedGame",
+        timeStamp: "2015.12.18T11:30:50"
+      }];
+
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+      JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+
+    });
+  });
 
 })

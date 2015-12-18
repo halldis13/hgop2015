@@ -102,8 +102,27 @@ module.exports = function tictactoeCommandHandler(events) {
 	     timeStamp: cmd.timeStamp
           }]
         } 
-      //check if full
       //draw
+      var counter = 0;
+      for(var i=0;i<3;i++)
+      {
+         for(var j=0;j<3;j++)
+         {
+            if(gameState.board[i][j] !=='')
+            {
+              counter++;
+            }
+         }
+      }
+      if(counter===9)
+      {
+        return[{
+         id:cmd.id,
+         event: "Draw",
+         user: cmd.user,
+         name:gameState.gameCreatedEvent.name,
+         timeStamp: cmd.timeStamp
+      }]}
       //move made
       return [{
         id: cmd.id,
