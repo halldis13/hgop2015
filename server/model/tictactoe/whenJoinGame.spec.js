@@ -6,29 +6,29 @@ describe('join game command', function(){
 
   it('should join game',function(){
     given= [{
-      id:"1234",
+      id:"1",
       event:"GameCreated",
-      userName: "Gulli",
-      timeStamp: "2015.12.02T11:29:44"
+      userName: "Halldis",
+      timeStamp: "2015.12.18T11:29:44"
     }];
     when={
-      id:"12345",
+      id:"2",
       comm:"JoinGame",
       user:{
-        userName : "Halli",
+        userName : "Eva",
         side:'O'
       },
-      name:"TheFirstGame",
-      timeStamp: "2015.12.02T11:30:50"
+      name:"CreatedGame",
+      timeStamp: "2015.12.18T11:30:50"
     };
     then=[{
-      id:"12345",
+      id:"2",
       event:"GameJoined",
       user:{
-        userName : "Halli",
+        userName : "Eva",
         side:'O'
       },
-      timeStamp: "2015.12.02T11:30:50"
+      timeStamp: "2015.12.18T11:30:50"
     }];
 
     var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
@@ -39,23 +39,23 @@ describe('join game command', function(){
   it('should reject joining of a non-existing game',function(){
     given= [];
     when={
-      id:"12345",
+      id:"2",
       comm:"JoinGame",
       user:{
-        userName : "Halli",
+        userName : "Eva",
         side: 'O'
       },
-      name:"TheFirstGame",
-      timeStamp: "2015.12.02T11:30:55"
+      name:"CreatedGame",
+      timeStamp: "2015.12.18T11:30:55"
     };
     then=[{
-      id:"12345",
+      id:"2",
       event:"GameDoesNotExist",
       user:{
-        userName : "Halli",
+        userName : "Eva",
         side: 'O'
       },
-      timeStamp: "2015.12.02T11:30:55"
+      timeStamp: "2015.12.18T11:30:55"
     }];
 
     var actualEvents = tictactoeCommandHandler(given).executeCommand(when);

@@ -6,49 +6,49 @@ describe('when make move command', function(){
 
   beforeEach(function(){
     given= [{
-      id:"1234",
+      id:"1",
       event:"GameCreated",
-      name:"TheFirstGame",
+      name:"CreatedGame",
       user : {
-        userName:'Gulli',
+        userName:'Halldis',
         side: 'X'
       },
-      timeStamp: "2015.12.02T11:29:44"
+      timeStamp: "2015.12.18T11:29:44"
     }, {
-      id:"12345",
+      id:"2",
       event:"GameJoined",
       user : {
-        userName:'Halli',
+        userName:'Eva',
         side: 'O'
       },
-      timeStamp: "2015.12.02T11:30:50"
+      timeStamp: "2015.12.18T11:30:50"
     }];
   });
 
   describe('on new game', function(){
     it('should join game',function(){
       when={
-        id:"12345",
+        id:"2",
         comm:"MakeMove",
         user:{
-          userName : "Halli",
+          userName : "Eva",
           side:'X'
         },
         x:0,
         y:1,
-        timeStamp: "2015.12.02T11:30:50"
+        timeStamp: "2015.12.18T11:30:50"
       };
       then=[{
-        id:"12345",
+        id:"2",
         event:"MoveMade",
         user:{
-          userName:"Halli",
+          userName:"Eva",
           side:'X'
         },
-        name:"TheFirstGame",
+        name:"CreatedGame",
         x:0,
         y:1,
-        timeStamp: "2015.12.02T11:30:50"
+        timeStamp: "2015.12.18T11:30:50"
       }];
 
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
@@ -60,41 +60,41 @@ describe('when make move command', function(){
   describe("one previous move", function(){
     it('placing move in same place should be illegal',function(){
       given.push({
-        id:"12345",
+        id:"2",
         event:"MoveMade",
         user:{
-          userName:"Halli",
+          userName:"Eva",
           side:'X'
         },
-        name:"TheFirstGame",
+        name:"CreatedGame",
         x:0,
         y:1,
-        timeStamp: "2015.12.02T11:30:50"
+        timeStamp: "2015.12.18T11:30:50"
       });
 
       when={
-        id:"12345",
+        id:"2",
         comm:"MakeMove",
         user:{
-          userName:"Halli",
+          userName:"Eva",
           side:'X'
         },
         x:0,
         y:1,
-        timeStamp: "2015.12.02T11:30:50"
+        timeStamp: "2015.12.18T11:30:50"
       };
 
       then=[{
-        id:"12345",
+        id:"2",
         event:"IllegalMove",
         user:{
-          userName:"Halli",
+          userName:"Eva",
           side:'X'
         },
-        name:"TheFirstGame",
+        name:"CreatedGame",
         x:0,
         y:1,
-        timeStamp: "2015.12.02T11:30:50"
+        timeStamp: "2015.12.18T11:30:50"
       }];
 
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
